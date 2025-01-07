@@ -1,0 +1,51 @@
+<div class="auth-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <div class="error" *ngIf="signupForm.get('email')?.errors?.['required'] && signupForm.get('email')?.touched">
+        Email is required
+      </div>
+      <div class="error" *ngIf="signupForm.get('email')?.errors?.['email'] && signupForm.get('email')?.touched">
+        Please enter a valid email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <div class="error" *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched">
+        Password is required
+      </div>
+      <div class="error" *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched">
+        Password must be at least 6 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        class="form-control"
+      />
+      <div class="error" *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched">
+        Passwords do not match
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+  </form>
+</div>
