@@ -8,16 +8,16 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
-      require('karma-junit-reporter') // Add junit reporter plugin
+      require('karma-junit-reporter') // JUnit Reporter
     ],
     client: {
       jasmine: {
-        // you can add configuration options for Jasmine here
+        // You can add configuration options for Jasmine here
       },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false // Leave Jasmine Spec Runner output visible in browser
     },
     jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+      suppressAll: true // Removes duplicated traces
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/demo'),
@@ -27,13 +27,16 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml', 'junit'], // Add junit reporter
+    reporters: ['progress', 'kjhtml', 'junit'], // Add JUnit reporter
     junitReporter: {
       outputDir: 'karma-reports', // Directory to save test results
       outputFile: 'test-results.xml', // Name of the file for test results
       useBrowserName: false // Don't include browser name in the filename
     },
     browsers: ['ChromeHeadless'],
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    singleRun: true, // Ensures Karma stops after running all tests
+    browserNoActivityTimeout: 60000, // Increase the timeout for inactivity
+    captureTimeout: 60000 // Increase the timeout for browser capture
   });
 };
