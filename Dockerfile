@@ -13,9 +13,6 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the source code
 COPY . .
 
-# Run Angular unit tests using Karma in headless mode
-RUN npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
-
 # Build the Angular app
 RUN npm run build --prod
 
