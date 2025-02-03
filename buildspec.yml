@@ -20,7 +20,7 @@ phases:
       - echo Writing image details to file...
       - echo $REPO_URI:$IMAGE_TAG > imageDetail.txt
       - echo Creating imagedefinitions.json file...
-      - printf '[{"name":"angular-webapp-container","imageUri":"%s"}]' $REPO_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"mycontainer","imageUri":"%s"}]' $REPO_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imageDetail.txt
