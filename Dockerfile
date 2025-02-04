@@ -26,7 +26,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Copy Angular build output from the Node.js build stage
-COPY --from=builder /app/dist/demo/browser .  # Replace with actual dist folder name
+COPY --from=builder /app/dist/demo .  # Replace with actual dist folder name
 
 # Copy a custom Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
