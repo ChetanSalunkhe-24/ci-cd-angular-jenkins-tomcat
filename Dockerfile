@@ -17,10 +17,7 @@ COPY . .
 RUN npm run build --prod
 
 # Expose port (for serving the app, if needed)
-FROM nginx:alpine-slim
 EXPOSE 8080
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist /usr/share/nginx/html
 
 # Keep the container running (use CMD if serving the app)
 CMD ["tail", "-f", "/dev/null"]
