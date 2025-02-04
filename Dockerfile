@@ -25,14 +25,11 @@ WORKDIR /usr/share/nginx/html
 # Remove default Nginx static files
 RUN rm -rf ./*
 
-# Copy Angular build output from the Node.js build stage
-COPY --from=builder /app/dist/demo .  # Replace with actual dist folder name
-
-# Copy a custom Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80 for web traffic
+# Start from NGINX to serve the built application
+FROM nginx:alpine-slim
 EXPOSE 8080
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
