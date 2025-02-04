@@ -25,14 +25,14 @@ WORKDIR /usr/share/nginx/html
 # Remove default Nginx static files
 RUN rm -rf ./*
 
-# Copy Angular build output from the Node.js build stage
-COPY --from=builder /app/dist/demo .  # Replace with actual dist folder name
+# Correctly reference the Angular build output
+COPY --from=builder /app/dist/demo .
 
 # Copy a custom Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80 for web traffic
-EXPOSE 8080
+EXPOSE 80
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
