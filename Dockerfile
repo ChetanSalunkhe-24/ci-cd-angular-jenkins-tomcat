@@ -26,7 +26,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Start from NGINX to serve the built application
-FROM nginx:alpine-slim
+FROM nginx:alpine
 EXPOSE 8080
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
