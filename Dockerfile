@@ -18,6 +18,7 @@ RUN npm run build --prod
 
 # Expose port (for serving the app, if needed)
 EXPOSE 80
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Keep the container running (use CMD if serving the app)
 CMD ["tail", "-f", "/dev/null"]
