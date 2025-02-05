@@ -26,7 +26,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Correctly reference the Angular build output
-COPY --from=builder /app/dist/demo /usr/share/nginx/html
+COPY --from=builder /app/dist/demo .
 
 # Copy a custom Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
