@@ -7,6 +7,8 @@ phases:
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851725338327.dkr.ecr.ap-south-1.amazonaws.com
       - REPO_URI=851725338327.dkr.ecr.ap-south-1.amazonaws.com/angular-webapp-cicd
       - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
+      - echo Pulling the latest Node.js image...
+      - docker pull node:18-bullseye
   build:
     commands:
       - echo Building the Docker image...
