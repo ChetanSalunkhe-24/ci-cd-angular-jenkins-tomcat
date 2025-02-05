@@ -1,5 +1,5 @@
 # 1️⃣ Use Node.js to build the Angular app
-FROM node:18 AS builder
+FROM node:18-bullseye AS builder
 
 # Set working directory
 WORKDIR /app
