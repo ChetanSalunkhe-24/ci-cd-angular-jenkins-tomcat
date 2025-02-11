@@ -6,26 +6,18 @@ phases:
       - echo Logging in to Docker Hub...
       - echo "Chetan@1999" | docker login -u "chetansalunkhe1999" --password-stdin
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851725338327.dkr.ecr.ap-south-1.amazonaws.com
-      - REPO_URI=851725338327.dkr.ecr.ap-south-1.amazonaws.com/angular-webapp-cicd
-      - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
-      - echo Pulling the latest Node.js image...
-      - docker pull node:18-bullseye
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo Building the Docker image...
   build:
     commands:
-      - echo Building the Docker image...
-      - docker build -t $REPO_URI:$IMAGE_TAG .
-      - docker tag $REPO_URI:$IMAGE_TAG $REPO_URI:latest
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
-      - echo Pushing the Docker image to Amazon ECR...
-      - docker push $REPO_URI:$IMAGE_TAG
-      - docker push $REPO_URI:latest
-      - echo Writing image details to file...
-      - echo $REPO_URI:$IMAGE_TAG > imageDetail.txt
-      - echo Creating imagedefinitions.json file...
-      - printf '[{"name":"mycontainer","imageUri":"%s"}]' $REPO_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo Pushing the Docker image to ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - echo '[{"name":"angular-app-container","imageUri":"'$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG'"}]' > imagedefinitions.json
 artifacts:
   files:
-    - imageDetail.txt
     - imagedefinitions.json
