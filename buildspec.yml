@@ -6,7 +6,7 @@ phases:
       - echo Logging in to Docker Hub...
       - echo "Chetan@1999" | docker login -u "chetansalunkhe1999" --password-stdin
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851725338327.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851725338327.dkr.ecr.ap-south-1.amazonaws.com
       - REPO_URI=851725338327.dkr.ecr.ap-south-1.amazonaws.com/angular-app-repo
       - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
   build:
