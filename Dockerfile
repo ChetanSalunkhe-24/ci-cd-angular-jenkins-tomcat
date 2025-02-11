@@ -5,7 +5,7 @@ COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
 RUN npm run build -- --configuration=production
-# COPY /app/dist/demo/browser/. /app/dist/demo/
+RUN echo "Files in /app/dist/demo/browser:" && ls -la /app/dist/demo/browser
 
 # Stage 2: Serve the application using Nginx
 FROM nginx:alpine
