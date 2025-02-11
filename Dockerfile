@@ -1,38 +1,14 @@
-# 1️⃣ Use Node.js to build the Angular app
-FROM node:18-bullseye AS builder
-
-# Set working directory
+# Stage 1: Build the Angular application
+FROM node:18 as build
 WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies (use legacy-peer-deps to avoid version issues)
+COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
-
-# Copy the rest of the source code
 COPY . .
-
-# Build the Angular app
 RUN npm run build --configuration=production
 
-# 2️⃣ Use Nginx to serve the built Angular app
+# Stage 2: Serve the application using Nginx
 FROM nginx:alpine
-
-# Set working directory for Nginx
-WORKDIR /usr/share/nginx/html
-
-# Remove default Nginx static files
-RUN rm -rf ./*
-
-# Correctly reference the Angular build output
-COPY --from=builder /app/dist/demo .
-
-# Copy a custom Nginx configuration file
+COPY --from=build /app/dist/demo /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80 for web traffic
 EXPOSE 80
-
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
