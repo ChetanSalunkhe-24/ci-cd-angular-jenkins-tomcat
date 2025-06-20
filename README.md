@@ -18,7 +18,7 @@ This project demonstrates a full CI/CD pipeline for deploying an Angular applica
 
 ```
 ci-cd-angular-jenkins-tomcat/
- ┣ deployment-scripts/            # Scripts to deploy Angular build to Tomcat
+ ┣ angular-app/                   # Angular application
  ┣ deployment-instructions.md     # Jenkins CI/CD configuration
  ┣ tomcat-setup-guide.md          # Details on multi-instance Tomcat setup
  ┣ screenshots/                   # Screenshots of Jenkins, deployed app, etc.
@@ -42,10 +42,10 @@ ci-cd-angular-jenkins-tomcat/
 
 | Job Name      | Description                                                  |
 |---------------|--------------------------------------------------------------|
-| `pull-code`   | Clones Angular app code from GitHub                         |
-| `test-code`   | Runs unit tests using Karma                                 |
-| `build-code`  | Builds Angular app using Node.js and npm                    |
-| `deploy-code` | Deploys build to Tomcat (Dev → QA → Stage → Prod)           |
+| `pull-code`   | Clones Angular app code from GitHub                          |
+| `test-code`   | Runs unit tests using Karma                                  |
+| `build-code`  | Builds Angular app using Node.js and npm                     |
+| `deploy-code` | Deploys build to Tomcat (Dev → QA → Stage → Prod)            |
 
 Each stage is triggered manually with approvals between environments.
 
@@ -63,7 +63,7 @@ See [`deployment-instructions.md`](./deployment-instructions.md) and [`tomcat-se
 
 ## Screenshots
 
-Add screenshots of Jenkins UI, build logs, and app running on each environment in the `screenshots/` folder.
+Please refere the screenshots of Jenkins jobs,  and app running on each environment in the `screenshots/` folder.
 
 ---
 
