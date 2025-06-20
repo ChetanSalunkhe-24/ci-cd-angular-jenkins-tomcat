@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 131.0.0.0 (Windows 10)" package="" timestamp="2025-01-26T09:24:26" id="0" hostname="LAPTOP-67O3256V" tests="14" errors="0" failures="0" time="1.229">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.0.0 Safari/537.36"/>
+  </properties>
+  <testcase name="AuthService should handle signup" time="0.013" classname="AuthService"/>
+  <testcase name="AuthService should handle login" time="0.003" classname="AuthService"/>
+  <testcase name="AuthService should be created" time="0.002" classname="AuthService"/>
+  <testcase name="LoginComponent should navigate to signup page" time="0.07" classname="LoginComponent"/>
+  <testcase name="LoginComponent should validate email format" time="0.007" classname="LoginComponent"/>
+  <testcase name="LoginComponent should validate password length" time="1.074" classname="LoginComponent"/>
+  <testcase name="LoginComponent should initialize with empty form" time="0.005" classname="LoginComponent"/>
+  <testcase name="LoginComponent should create" time="0.006" classname="LoginComponent"/>
+  <testcase name="LoginComponent should call auth service on valid form submission" time="0.007" classname="LoginComponent"/>
+  <testcase name="SignupComponent should validate matching passwords" time="0.022" classname="SignupComponent"/>
+  <testcase name="SignupComponent should initialize with empty form" time="0.004" classname="SignupComponent"/>
+  <testcase name="SignupComponent should create" time="0.005" classname="SignupComponent"/>
+  <testcase name="SignupComponent should not call auth service on invalid form" time="0.006" classname="SignupComponent"/>
+  <testcase name="SignupComponent should call auth service on valid form submission" time="0.005" classname="SignupComponent"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
